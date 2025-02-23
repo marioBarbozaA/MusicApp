@@ -1,0 +1,66 @@
+@import "@Styles/variables"; 
+
+.song-card {
+    width: 200px;
+    background-color: $color-background;
+    color: $color-white;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: background-color 0.2s ease;
+  
+    &:hover {
+      background-color: $color-for-hover;
+    }
+  
+    &__image-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+  
+    &__image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  
+    &__overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-white;
+      background-color: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  
+    &__image-container:hover .song-card__overlay {
+      opacity: 1;
+    }
+  
+    &__title {
+      margin: 0.5rem 0 0;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  
+    &__subtitle {
+      margin: 0.25rem 0 0;
+      font-size: 0.75rem;
+      color: $color-gray-light;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+  

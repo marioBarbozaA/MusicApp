@@ -1,0 +1,32 @@
+/* -------------------
+   COLORS
+------------------- */
+$color-background: #020202;    // BG  Principal
+$color-white: #ffffff;
+$color-gray-light: #b3b3b3;
+$color-for-hover: #282828;
+
+/* -------------------
+   TIPOGRAPHY
+------------------- */
+$font-family-base: "Open Sans", sans-serif; 
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+
+/* -------------------
+   BREAKPOINTS
+------------------- */
+$breakpoint-sm: 576px; // Mobil
+$breakpoint-md: 768px; // Tablet
+$breakpoint-lg: 992px; // Laptop
+$breakpoint-xl: 1200px; // Desktop
+$breakpoint-xxl: 1400px; // Big Screen
+
+/* -------------------
+   Z-INDEX 
+------------------- */
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-modal: 1050;
+$zindex-popover: 1070;

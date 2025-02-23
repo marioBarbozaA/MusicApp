@@ -1,0 +1,11 @@
+@import "@Styles/variables";
+
+.main-page {
+    background-color: $color-background;
+    color: $color-white;
+    padding: 1rem;
+  
+    &__carousel {
+      margin-top: 1rem;
+    }
+  }

@@ -1,0 +1,15 @@
+.carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-bottom: 0.5rem;
+
+  &__track {
+    display: inline-flex;
+    gap: 1rem;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
