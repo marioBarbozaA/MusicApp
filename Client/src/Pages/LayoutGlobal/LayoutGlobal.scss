@@ -1,0 +1,19 @@
+@import "@Styles/variables";
+
+.layout-global {
+   
+   &__main {
+     min-height: 100vh;
+     background-color: $color-background; 
+     color: $color-white;
+     padding: 1rem;
+   }
+   .layout-global__main {
+      transition: margin-left 0.4s;
+      &.shifted {
+        margin-left: 250px;
+      }
+    }
+    
+ }
+ 
