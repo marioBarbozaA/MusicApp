@@ -1,4 +1,7 @@
+import { extractAlbumId } from "@Utils/extractAlbumId";
 import "./SongCard.scss";
+import * as FaIcons from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 interface SongCardProps {
   imageUrl: string;
@@ -13,9 +16,12 @@ const SongCard: React.FC<SongCardProps> = ({
   subtitle,
   albumUrl,
 }) => {
+  const navigate = useNavigate();
   const handleClick = () => {
-    window.open(albumUrl);
+    const albumId = extractAlbumId(albumUrl);
+    navigate(`/RateAlbum/${albumId}`);
   };
+
   return (
     <div className="song-card" onClick={handleClick}>
       <div className="song-card__image-container">
@@ -24,7 +30,9 @@ const SongCard: React.FC<SongCardProps> = ({
           alt={title}
           className="song-card__image"
         />
-        <div className="song-card__overlay">See more</div>
+        <div className="song-card__overlay">
+          <FaIcons.FaMusic />
+        </div>
       </div>
       <h4 className="song-card__title">{title}</h4>
       <p className="song-card__subtitle">{subtitle}</p>

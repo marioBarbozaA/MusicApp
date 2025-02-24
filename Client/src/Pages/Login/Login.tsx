@@ -8,9 +8,9 @@ const Login: React.FC = () => {
 
   return (
     <div style={{ textAlign: "center", marginTop: "2rem" }}>
-      <h1>¡Bienvenido!</h1>
-      <p>Para ver contenido de Spotify, necesitas autorizar la aplicación.</p>
-      <Button label="Login con Spotify" onClick={handleLogin} />
+      <h1>Welcome!</h1>
+      <p>To view content on Spotify, you need to authorize the application.</p>
+      <Button label="Login with Spotify" onClick={handleLogin} />
     </div>
   );
 };

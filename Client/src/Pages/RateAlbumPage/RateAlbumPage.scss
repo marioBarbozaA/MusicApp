@@ -1,0 +1,31 @@
+@import "@Styles/variables";
+
+.rate-album-page {
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  
+      @media (min-width: $breakpoint-md) {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
+  
+    &__tracks {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  
+      @media (min-width: $breakpoint-md) {
+        flex: 1;
+      }
+    }
+  
+    &__title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+  

@@ -14,7 +14,7 @@ const Callback: React.FC = () => {
     navigate("/");
   }, [navigate]);
 
-  return <div>Procesando autenticación...</div>;
+  return <div>Processing the authentication...</div>;
 };
 
 export default Callback;

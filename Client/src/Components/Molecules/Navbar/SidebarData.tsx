@@ -9,8 +9,8 @@ export const SidebarData = [
     cName: "nav-text"
   },
   {
-    title: "Liked",
-    path: "/liked",
+    title: "Rated",
+    path: "/rated-albums",
     icon: <FaIcons.FaMusic />,
     cName: "nav-text"
   },

@@ -3,38 +3,58 @@ import "./MainPage.scss";
 import { SpotifyAlbum } from "@Interfaces/SpotifyAlbum";
 import { CarouselWithPagination } from "@Components/Organism/CarouselWithPagination";
 
-const LIMIT = 6;
+const LIMIT = 10;
 
 const MainPage: React.FC = () => {
   const [albums, setAlbums] = useState<SpotifyAlbum[]>([]);
+
+  const [limit] = useState(LIMIT);
+  const [offset, setOffset] = useState(0); 
+  const [total, setTotal] = useState(0);
+
   const accessToken = localStorage.getItem("spotify_access_token");
 
-  const fetchNewReleases = async () => {
+  const fetchNewReleases = async (limit: number, offset: number) => {
     if (!accessToken) return;
     try {
       const response = await fetch(
-        `https://api.spotify.com/v1/browse/new-releases?limit=50`,
+        `https://api.spotify.com/v1/browse/new-releases?limit=${limit}&offset=${offset}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         }
       );
+
       if (!response.ok) {
         console.error("Error al obtener nuevos lanzamientos");
         return;
       }
+
       const data = await response.json();
-      setAlbums(data.albums.items);
+      
+      setAlbums(data.albums.items || []);
+      setTotal(data.albums.total || 0);
     } catch (error) {
       console.error("Error en fetchNewReleases:", error);
     }
   };
 
   useEffect(() => {
-    fetchNewReleases();
+    fetchNewReleases(limit, offset);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [offset]);
+
+  const handleNextPage = () => {
+    setOffset((prevOffset) => prevOffset + limit);
+  };
+
+  const handlePrevPage = () => {
+    setOffset((prevOffset) => Math.max(prevOffset - limit, 0));
+  };
+
+  const currentPage = Math.floor(offset / limit) + 1;
+  const totalPages = Math.ceil(total / limit);
 
   const carouselItems = albums.map((album) => ({
     id: album.id,
@@ -51,7 +71,10 @@ const MainPage: React.FC = () => {
           title="New Albums"
           subtitle="Explore new music"
           items={carouselItems}
-          limit={LIMIT}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onNext={handleNextPage}
+          onPrev={handlePrevPage}
         />
       </div>
     </div>

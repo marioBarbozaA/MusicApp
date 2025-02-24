@@ -14,7 +14,8 @@
       "@Components/*": ["src/Components/*"],
       "@Pages/*": ["src/Pages/*"],
       "@Interfaces/*": ["src/Interfaces/*"],
-      "@Styles/*": ["src/Styles/*"]
+      "@Styles/*": ["src/Styles/*"],
+      "@Utils/*": ["src/utils/*"]
     },
 
     "moduleResolution": "node",

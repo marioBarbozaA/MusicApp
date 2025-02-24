@@ -1,7 +1,9 @@
 const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const redirectUri = "http://localhost:5173/callback";
 const scopes = [
-  "user-read-email"
+  "user-read-email",
+  "playlist-modify-public",
+  "app-remote-control"
 ];
 
 export function getSpotifyAuthUrl(): string {

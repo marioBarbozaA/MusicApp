@@ -1,0 +1,74 @@
+@import "@Styles/variables";
+
+.track-for-rate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+
+    &:hover {
+        background: $color-for-hover;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    &__name {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    &__duration {
+        font-size: 0.8rem;
+        color: $color-for-duration;
+    }
+
+    &__rating {
+        background-color: $color-background;
+        color: $color-white;
+        border: 2px solid $color-for-hover;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+        appearance: none;
+
+        &:hover {
+            background-color: darken($color-for-hover, 10%);
+        }
+
+        &:focus {
+            border-color: lighten($color-gray-light, 20%);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        option {
+            background: $color-background;
+            color: $color-white;
+            padding: 10px;
+            font-size: 0.9rem;
+            transition:  0.2s ease;
+
+            &:hover {
+                background: lighten($color-background, 15%);
+            }
+        }
+    }
+    &__listened {
+        align-items: center;
+        font-size: 0.9rem;
+        color: $color-white;
+    
+        input {
+          margin-right: 8px;
+          cursor: pointer;
+          accent-color: $color-for-hover;
+        }
+      }
+}

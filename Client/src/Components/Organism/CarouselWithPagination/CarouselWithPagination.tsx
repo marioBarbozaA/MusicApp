@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./CarouselWithPagination.scss";
 import Carousel from "@Components/Molecules/Carousel/Carousel";
 import Pagination from "@Components/Molecules/Pagination/Pagination";
@@ -14,37 +13,22 @@ interface Item {
 interface CarouselWithPaginationProps {
   title: string;
   items: Item[];
-  limit: number;
   subtitle?: string;
-  onSeeMore?: () => void; 
+  currentPage: number;
+  totalPages: number;
+  onNext: () => void;
+  onPrev: () => void;
 }
 
 const CarouselWithPagination: React.FC<CarouselWithPaginationProps> = ({
   title,
   subtitle,
   items,
-  limit,
-  onSeeMore,
+  currentPage,
+  totalPages,
+  onNext,
+  onPrev,
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(items.length / limit);
-
-  const startIndex = (currentPage - 1) * limit;
-  const endIndex = startIndex + limit;
-  const currentItems = items.slice(startIndex, endIndex);
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
   return (
     <section className="carousel-pagination">
       <div className="carousel-pagination__header">
@@ -53,15 +37,13 @@ const CarouselWithPagination: React.FC<CarouselWithPaginationProps> = ({
           {subtitle && <p className="carousel-pagination__subtitle">{subtitle}</p>}
         </div>
         <Pagination
-          onPrev={handlePrev}
-          onNext={handleNext}
-          onSeeMore={onSeeMore}
+          onPrev={onPrev}
+          onNext={onNext}
           currentPage={currentPage}
           totalPages={totalPages}
         />
       </div>
-
-      <Carousel items={currentItems} />
+      <Carousel items={items} />
     </section>
   );
 };
