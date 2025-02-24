@@ -17,7 +17,7 @@ git clone <repository_url>
 Go to the `clients` folder within the project:
 
 ```bash
-cd clients
+cd Client
 ```
 
 ### 3. Install Dependencies
