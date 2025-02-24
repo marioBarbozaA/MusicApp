@@ -4,7 +4,6 @@ import "./TrackForRate.scss";
 interface TrackForRateProps {
   trackId: string;
   trackName: string;
-  artistName: string;
   durationMs: number;
   onRatingChange: (rating: number | null) => void;
   onListenedChange: (listened: boolean) => void;

@@ -115,7 +115,6 @@ const RateAlbumPage: React.FC = () => {
               key={track.id}
               trackId={track.id}
               trackName={track.name}
-              artistName={track.artists.map((a) => a.name).join(", ")}
               durationMs={track.duration_ms}
               onRatingChange={(rating) => {
                 const updatedTracks = detailedTracks.map((t) =>
