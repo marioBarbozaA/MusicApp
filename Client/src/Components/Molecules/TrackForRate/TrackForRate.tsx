@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./TrackForRate.scss";
 
 interface TrackForRateProps {
+  albumId: string;
   trackId: string;
   trackName: string;
   durationMs: number;
@@ -10,6 +11,7 @@ interface TrackForRateProps {
 }
 
 const TrackForRate: React.FC<TrackForRateProps> = ({
+  albumId,
   trackId,
   trackName,
   durationMs,
@@ -19,22 +21,56 @@ const TrackForRate: React.FC<TrackForRateProps> = ({
   const [rating, setRating] = useState<number | null>(null);
   const [listened, setListened] = useState<boolean>(false);
 
-  const formatDuration = (ms: number) => {
-    const minutes = Math.floor(ms / 60000);
-    const seconds = ((ms % 60000) / 1000).toFixed(0);
-    return `${minutes}:${seconds.padStart(2, "0")}`;
+  useEffect(() => {
+    const storedAlbums = localStorage.getItem("albums");
+    if (storedAlbums) {
+      const albumsData = JSON.parse(storedAlbums);
+      if (albumsData[albumId]) {
+        const trackData = albumsData[albumId].tracks.find((t: any) => t.id === trackId);
+        if (trackData) {
+          setRating(trackData.rating);
+          setListened(trackData.listened);
+        }
+      }
+    }
+  }, [albumId, trackId]);
+
+  const saveTrackData = (updatedRating: number | null, updatedListened: boolean) => {
+    const storedAlbums = localStorage.getItem("albums");
+    const albumsData = storedAlbums ? JSON.parse(storedAlbums) : {};
+
+    if (!albumsData[albumId]) {
+      albumsData[albumId] = { id: albumId, tracks: [] };
+    }
+
+    const trackIndex = albumsData[albumId].tracks.findIndex((t: any) => t.id === trackId);
+    if (trackIndex !== -1) {
+      albumsData[albumId].tracks[trackIndex] = { id: trackId, rating: updatedRating, listened: updatedListened };
+    } else {
+      albumsData[albumId].tracks.push({ id: trackId, rating: updatedRating, listened: updatedListened });
+    }
+
+    localStorage.setItem("albums", JSON.stringify(albumsData));
   };
 
   const handleRatingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newRating = Number(e.target.value);
     setRating(newRating);
     onRatingChange(newRating);
+    saveTrackData(newRating, listened);
   };
 
   const handleListenedChange = () => {
     const newListened = !listened;
     setListened(newListened);
     onListenedChange(newListened);
+    saveTrackData(rating, newListened);
+  };
+
+  const formatDuration = (ms: number) => {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds.padStart(2, "0")}`;
   };
 
   return (

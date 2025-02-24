@@ -112,25 +112,22 @@ const RateAlbumPage: React.FC = () => {
           <h3 className="rate-album-page__title">Tracks</h3>
           {detailedTracks.map((track) => (
             <TrackForRate
-              key={track.id}
-              trackId={track.id}
-              trackName={track.name}
-              durationMs={track.duration_ms}
-              onRatingChange={(rating) => {
-                const updatedTracks = detailedTracks.map((t) =>
-                  t.id === track.id ? { ...t, rating } : t
-                );
-                setDetailedTracks(updatedTracks);
-                saveAlbumData(updatedTracks);
-              }}
-              onListenedChange={(listened) => {
-                const updatedTracks = detailedTracks.map((t) =>
-                  t.id === track.id ? { ...t, listened } : t
-                );
-                setDetailedTracks(updatedTracks);
-                saveAlbumData(updatedTracks);
-              }}
-            />
+                  key={track.id}
+                  trackId={track.id}
+                  trackName={track.name}
+                  durationMs={track.duration_ms}
+                  onRatingChange={(rating) => {
+                      const updatedTracks = detailedTracks.map((t) => t.id === track.id ? { ...t, rating } : t
+                      );
+                      setDetailedTracks(updatedTracks);
+                      saveAlbumData(updatedTracks);
+                  } }
+                  onListenedChange={(listened) => {
+                      const updatedTracks = detailedTracks.map((t) => t.id === track.id ? { ...t, listened } : t
+                      );
+                      setDetailedTracks(updatedTracks);
+                      saveAlbumData(updatedTracks);
+                  } } albumId={id || ""}            />
           ))}
         </div>
       </div>

@@ -20,6 +20,7 @@ const App: React.FC = () => {
         >
           <Route index element={<MainPage />} />
           <Route path="RateAlbum/:id" element={<RateAlbumPage />} />
+
         </Route>
 
       </Routes>
