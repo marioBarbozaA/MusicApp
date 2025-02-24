@@ -26,6 +26,7 @@ const TrackForRate: React.FC<TrackForRateProps> = ({
     if (storedAlbums) {
       const albumsData = JSON.parse(storedAlbums);
       if (albumsData[albumId]) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const trackData = albumsData[albumId].tracks.find((t: any) => t.id === trackId);
         if (trackData) {
           setRating(trackData.rating);
@@ -43,6 +44,7 @@ const TrackForRate: React.FC<TrackForRateProps> = ({
       albumsData[albumId] = { id: albumId, tracks: [] };
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const trackIndex = albumsData[albumId].tracks.findIndex((t: any) => t.id === trackId);
     if (trackIndex !== -1) {
       albumsData[albumId].tracks[trackIndex] = { id: trackId, rating: updatedRating, listened: updatedListened };
